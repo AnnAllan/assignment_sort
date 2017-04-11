@@ -1,45 +1,25 @@
 def merge_sort(arr)
-  left = []
-  right = []
-  if arr.length == 1
-    return arr
-  else
-
-      half = arr.length / 2
-      half.times do
-        left << arr.shift
-      end
-      right = arr
-    return merge(left, right)
-  end
-  puts new_arr
-  puts
-end
-
-def merge(left, right)
+  return arr if (arr.length) <= 1
+  right_start = left_end = (arr.length) / 2
+  arr.length.even? ? left_end -= 1 : right_start += 1
+  left = merge_sort(arr[0..left_end])
+  right = merge_sort(arr[right_start..arr.length])
   new_arr = []
-  i = 0
-  j = 0
-  until ((i > left.length) || (j > right.length))
-    if right[j]  == nil
-      new_arr << left[i]
-      i += 1
-    elsif left[i] == nil
-      new_arr << right[j]
-      j += 1
-    elsif (left[i] <= right[j])
-      new_arr << left[i]
-      i += 1
-    else
-      new_arr << right[j]
-      j += 1
+  until left.empty? && right.empty?
+    l = left[0]
+    r =  right[0]
+    if l && r
+      value = r < l ? right.shift : left.shift
+      new_arr << value
+    elsif l
+      new_arr << left.shift
+    elsif r
+      new_arr << right.shift
     end
   end
-
-  puts new_arr
-  return new_arr
+  new_arr
 end
 
-merge_sort([1, 3, 7, 2, 5, 6])
-merge_sort([1, 3, 3, 7, 2, 5])
-merge_sort([1, -1, 3, -3, 7, 2, 5])
+puts merge_sort([1, 3, 7, 2, 5, 6]).join("  ")
+puts merge_sort([1, 3, 3, 7, 2, 5]).join("  ")
+puts merge_sort([1, -1, 3, -3, 7, 2, 5]).join("  ")

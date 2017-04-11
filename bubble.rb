@@ -1,8 +1,10 @@
 def bubble_sort(arr)
+  unsorted_portion = arr.length
   changes = true
   while changes  do
     changes = false
-    0.upto(arr.length - 2) do |i|
+    (unsorted_portion - 1).times  do |i|
+      puts "arr[i] is #{arr[i]} and arr[i + 1] is #{arr[i+1]}"
       if arr[i] > arr[i + 1]
         temp = arr[i + 1]
         arr[i + 1] = arr[i]
@@ -10,6 +12,7 @@ def bubble_sort(arr)
         changes = true
       end
     end
+    unsorted_portion -= 1
   end
   puts arr
   puts
