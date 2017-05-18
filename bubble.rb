@@ -6,9 +6,7 @@ def bubble_sort(arr)
     (unsorted_portion - 1).times  do |i|
       puts "arr[i] is #{arr[i]} and arr[i + 1] is #{arr[i+1]}"
       if arr[i] > arr[i + 1]
-        temp = arr[i + 1]
-        arr[i + 1] = arr[i]
-        arr[i] = temp
+        a, b = b, a
         changes = true
       end
     end
